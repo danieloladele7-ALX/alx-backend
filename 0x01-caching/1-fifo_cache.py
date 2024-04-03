@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-'''
-Task 1: FIFO caching
+'''Task 1: FIFO caching
 '''
 
 
@@ -10,8 +9,7 @@ from base_caching import BaseCaching
 
 
 class FIFOCache(BaseCaching):
-    '''
-    A class `FIFOCache` that inherits from
+    '''A class `FIFOCache` that inherits from
        `BaseCaching` and is a caching system.
     '''
 
@@ -20,8 +18,7 @@ class FIFOCache(BaseCaching):
         self.cache_data = OrderedDict()
 
     def put(self, key, item):
-        '''
-        assign to the dictionary `self.cache_data` the
+        '''assign to the dictionary `self.cache_data` the
            `item` value for the key `key`
         '''
 
@@ -35,7 +32,6 @@ class FIFOCache(BaseCaching):
         self.cache_data[key] = item
 
     def get(self, key):
-        '''
-        return the value in `self.cache_data` linked to `key`
+        '''return the value in `self.cache_data` linked to `key`
         '''
         return self.cache_data.get(key, None)
