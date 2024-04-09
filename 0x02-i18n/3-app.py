@@ -41,7 +41,7 @@ def get_locale():
 # uncomment this line and comment the @babel.localeselector
 # you get this error:
 # AttributeError: 'Babel' object has no attribute 'localeselector'
-babel.init_app(app, locale_selector=get_locale)
+# babel.init_app(app, locale_selector=get_locale)
 
 if __name__ == '__main__':
     app.run()
