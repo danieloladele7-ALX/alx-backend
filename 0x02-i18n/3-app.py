@@ -1,47 +1,25 @@
 #!/usr/bin/env python3
-"""Basic Babel Setup"""
-from flask import Flask, render_template, request
+""" 3-app module """
+from typing import Union
+from flask import Flask, request
 from flask_babel import Babel
-
-
-class Config:
-    """Config class for flask app
-    """
-    DEBUG = True
-    LANGUAGES = ['en', 'fr']
-    BABEL_DEFAULT_LOCALE = 'en'
-    BABEL_DEFAULT_TIMEZONE = 'UTC'
+from routes.routes_3 import app_routes
+from config import Config
 
 
 app = Flask(__name__)
-app.config.from_object(Config)
 babel = Babel(app)
 
-
-@app.route('/')
-def index():
-    """view function for root route
-
-    Returns:
-        html: homepage
-    """
-    return render_template('3-index.html')
+app.config.from_object(Config)
+app.register_blueprint(app_routes)
 
 
 @babel.localeselector
-def get_locale():
-    """get best language match
-
-    Returns:
-        str: best match
+def get_locale() -> Union[str, None]:
+    """ get locale
     """
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    return request.accept_languages.best_match(Config.LANGUAGES)
 
 
-# uncomment this line and comment the @babel.localeselector
-# you get this error:
-# AttributeError: 'Babel' object has no attribute 'localeselector'
-# babel.init_app(app, locale_selector=get_locale)
-
-if __name__ == '__main__':
-    app.run()
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port="5000")
