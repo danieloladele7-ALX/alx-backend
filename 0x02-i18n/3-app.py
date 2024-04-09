@@ -28,7 +28,7 @@ def index():
     return render_template('3-index.html')
 
 
-# @babel.localeselector
+@babel.localeselector
 def get_locale():
     """get best language match
 
